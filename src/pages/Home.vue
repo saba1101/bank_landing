@@ -27,7 +27,6 @@ const notations = ref([
 ])
 let countRanges = () => {
     notations.value.forEach(el => {
-        console.log(222)
         if(el.range === el.to) return
         el.range = el.from+=1
     })
