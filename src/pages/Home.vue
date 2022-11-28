@@ -20,7 +20,14 @@ const notations = ref([
     {
         title: 'User Active',
         from: 0,
-        to: 380,
+        to: 580,
+        range: 0,
+        prefix: ''
+    },
+    {
+        title: 'Rates',
+        from: 0,
+        to: 330,
         range: 0,
         prefix: ''
     }
@@ -80,7 +87,7 @@ setTimeout(() => {
                     </div>
                 </div>
             </div>
-            <div data-aos="fade-right" class="home_top_right">
+            <div data-aos="fade-left" class="home_top_right">
                 <div class="gradients">
                     <div 
                         :class="['gradient_circle',`circle_${i}`]"
@@ -104,12 +111,14 @@ setTimeout(() => {
                 </div>
             </div>
         </div>
-        <div class="home_bottom">
+        <div data-aos="fade-left" class="home_bottom">
             <ul>
                 <li v-for="(item,ind) in notations" :key="ind">
-                    <span>{{item.range}}</span>
-                    <span>
-                        {{item.prefix}}{{item.title}}+
+                    <span class="range">
+                        {{item.prefix}}{{item.range}}+
+                        </span>
+                    <span class="title">
+                        {{item.title}}
                     </span>
                 </li>
             </ul>
@@ -164,9 +173,27 @@ setTimeout(() => {
                         font-size: 4.375rem;
                         font-weight: 700;
                         text-shadow: 0.9375rem 0.9375rem 0.625rem rgba(#FFF,.2);
-
+                        animation: switch_shadow_default 2s infinite alternate;
                         &.middle_title{
                             text-shadow: 0.9375rem 0.9375rem 0.625rem rgba(#5CE1E6,.2);
+                              animation: switch_shadow_diff 2s infinite alternate;
+                        }
+
+                        @keyframes switch_shadow_default {
+                            from{
+                                text-shadow: 0.9375rem 0.9375rem 0.625rem rgba(#FFF,.1);
+                            }
+                            to{
+                                text-shadow: 0.9375rem 0.9375rem 0.625rem rgba(#FFF,.3);
+                            }
+                        }
+                        @keyframes switch_shadow_diff {
+                            from{
+                                text-shadow: 0.9375rem 0.9375rem 0.625rem rgba(#5CE1E6,.1);
+                            }
+                            to{
+                                text-shadow: 0.9375rem 0.9375rem 0.625rem rgba(#5CE1E6,.4);
+                            }
                         }
                     }
                     
@@ -304,7 +331,50 @@ setTimeout(() => {
     }
 
     .home_bottom{
-        margin-top: 5rem;
+        margin-top: 7rem;
+        ul{
+            @include flex(space-between,center,row);
+
+            &:hover{
+                li{
+                    opacity: .2;
+                }
+            }
+
+            li{
+                padding: 0 90px;
+                @include flex(flex-start,center,row);
+                border-right: 1px solid rgba(#fff,.2);
+                transition: $transition;
+                *{
+                    user-select: none;
+                }
+
+                &:hover{
+                    opacity: 1;
+                }
+
+                &:last-child{
+
+                    border-right: none;
+                }
+
+                span{
+                    white-space: nowrap;
+                }
+                .title{
+                    font-size: 20px;
+                    color: $cyan;
+                    margin-left: 25px;
+                }
+                .range{
+                    margin-left: 0;
+                    font-size: 40px;
+                    color: #fff;
+                    font-weight: 600;
+                }
+            }
+        }
     }
 }
 

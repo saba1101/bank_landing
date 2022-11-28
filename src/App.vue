@@ -21,6 +21,7 @@ import Home from '@/pages/Home.vue'
   min-height: 100vh;
   // background-image: linear-gradient(229deg, rgba(#89f7fe,.5) -80%, transparent 80%);
   background-image: linear-gradient(226deg, rgba(137, 247, 254, 0.2) 0%, transparent 71%);
+  overflow-x: hidden;
 
   .section{
 
