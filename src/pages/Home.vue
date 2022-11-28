@@ -25,23 +25,17 @@ const notations = ref([
         prefix: ''
     }
 ])
-
-const countRanges = () => {
-    // if(notations.value.every(el => el.range === el.to)) console.log(2)
-    // let counterInterval = setInterval(() => {
-    //     notations.value.forEach(el => {
-    //         console.log(1)
-    //         if(el.range === el.to) clea
-    //         el.range = el.from+=1
-    //     })
-    // }, 1);
-        
+let countRanges = () => {
+    notations.value.forEach(el => {
+        console.log(222)
+        if(el.range === el.to) return
+        el.range = el.from+=1
+    })
 }
-
-onMounted(() => {
-    countRanges()
-})
-
+let counterInterval = setInterval(countRanges,1);
+setTimeout(() => {
+    clearInterval(counterInterval)
+}, 3000);
 </script>
 
 <template>
