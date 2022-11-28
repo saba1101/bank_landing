@@ -12,6 +12,14 @@ const Navigation_items = ref(routes)
             <div class="logo">
                 <img src="@/assets/icons/logo.svg" alt="">
             </div>
+            <div class="title">
+                <span>
+                    <span class="pref">
+                        GG
+                    </span>
+                    Bank
+                </span>
+            </div>
         </div>
         <div class="right_side">
             <ul>
@@ -38,12 +46,28 @@ const Navigation_items = ref(routes)
         transition: $transition;
 
         .left_side{
+            @include flex(flex-start,center,row);
             .logo {
                 cursor: pointer;
                 user-select: none;
                 img{
                     width: 1.875rem;
                     pointer-events: none;
+                }
+            }
+
+            .title{
+                margin-left: 0.9375rem;
+                cursor: pointer;
+                span{
+                    font-size: 1.375rem;
+                    color: #FFFFFF;
+                    font-weight: 700;
+
+                    & > .pref{
+                        font-size: 1.625rem;
+                        color: $cyan;
+                    }
                 }
             }
         }
@@ -58,19 +82,50 @@ const Navigation_items = ref(routes)
                     transition: $transition;
                     cursor: pointer;
                     user-select: none;
+                    position: relative;
 
                     &:first-child{
                         margin-left: 0;
                     }
+                    &::before,&::after{
+                        content: '';
+                        display: block;
+                        position: absolute;
+                        transition: $transition;
+                    }
+                    &::before{
+                        width: 0;
+                        height: 0.0625rem;
+                        background: rgba(#5CE1E6,.5);
+                        top: 0;
+                        left: 0;
+                    }
+                    &::after{
+                        width: 0;
+                        height: 0.125rem;
+                        background: rgba(#5CE1E6, .9);
+                        bottom: -0.0625rem;
+                        right: 0;
+                    }
 
                     &:hover{
                         transform: translateY(-0.8125rem);
+                        &::before{
+                            width: calc(100% - 1.25rem);
+                        }
+                        &::after{
+                            width: calc(100% - 0.3125rem);
+                        }
+                        span{
+                            color: $cyan;
+                        }
                     }
 
                     span{
                         font-size: 1.1875rem;
                         color: rgba(#FFFFFF,.7);
                         font-weight: 100;
+                        transition: $transition;
                     }
                 }
             }
