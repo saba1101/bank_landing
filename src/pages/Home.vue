@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "@vue/reactivity";
-import { onMounted } from "@vue/runtime-core";
+import { onMounted, watch } from "@vue/runtime-core";
 
 const notations = ref([
     {
@@ -32,16 +32,29 @@ const notations = ref([
         prefix: ''
     }
 ])
-let countRanges = () => {
+
+const countRanges = () => {
     notations.value.forEach(el => {
         if(el.range === el.to) return
         el.range = el.from+=1
     })
 }
-let counterInterval = setInterval(countRanges,1);
-setTimeout(() => {
-    clearInterval(counterInterval)
-}, 3000);
+let counterInterval = undefined
+
+
+const mousemove_event = (event) => {
+    console.log(event)
+}
+
+onMounted(() => {
+    counterInterval = setInterval(countRanges,1);
+    document.addEventListener('mousemove',mousemove_event)
+})
+watch(notations.value,() => {
+    if(notations.value.every(el => el.range === el.to)) clearInterval(counterInterval)
+
+})
+
 </script>
 
 <template>
@@ -168,7 +181,9 @@ setTimeout(() => {
             .home_info{
                 margin-top: 1.25rem;
                 position: relative;
+                @include flex(flex-start,flex-start,row);
                 .titles{
+                    width: 40.625rem;
                     span{
                         font-size: 4.375rem;
                         font-weight: 700;
@@ -209,9 +224,6 @@ setTimeout(() => {
                     }
                 }
                 .get_started_btn{
-                    position: absolute;
-                    right: 0;
-                    top: 0;
                     border-radius: 50%;
                     width: 8.75rem;
                     height: 8.75rem;
@@ -219,6 +231,7 @@ setTimeout(() => {
                     @include centerItem;
                     transition: $transition;
                     cursor: pointer;
+                    margin-left: 1.875rem;
                     *{
                         user-select: none;
                     }
@@ -253,15 +266,15 @@ setTimeout(() => {
 
         .home_top_right{
             position: relative;
-            height: 450px;
+            height: 28.125rem;
 
             &:hover{
                 .single_card{
                     &.top{
-                            transform: translateY(-50px);
+                            transform: translateY(-3.125rem);
                         }
                     &.middle{
-                        transform: translateY(30px);
+                        transform: translateY(1.875rem);
                     }
                     &.bottom{
                         transform: scale(.8);
@@ -276,7 +289,7 @@ setTimeout(() => {
                     height: 4.375rem;
                     border-radius: 50%;
                     background-image: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
-                    box-shadow: 0 0 70px 10px rgba(#66a6ff,.2);
+                    box-shadow: 0 0 4.375rem 0.625rem rgba(#66a6ff,.2);
 
                     &.circle_1{
                         top: 10%;
@@ -342,9 +355,9 @@ setTimeout(() => {
             }
 
             li{
-                padding: 0 90px;
+                padding: 0 5.625rem;
                 @include flex(flex-start,center,row);
-                border-right: 1px solid rgba(#fff,.2);
+                border-right: 0.0625rem solid rgba(#fff,.2);
                 transition: $transition;
                 *{
                     user-select: none;
@@ -363,13 +376,13 @@ setTimeout(() => {
                     white-space: nowrap;
                 }
                 .title{
-                    font-size: 20px;
+                    font-size: 1.25rem;
                     color: $cyan;
-                    margin-left: 25px;
+                    margin-left: 1.5625rem;
                 }
                 .range{
                     margin-left: 0;
-                    font-size: 40px;
+                    font-size: 2.5rem;
                     color: #fff;
                     font-weight: 600;
                 }
