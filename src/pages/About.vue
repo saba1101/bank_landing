@@ -115,6 +115,7 @@
     ul:not(.items){
         width: 100%;
         @include flex(unset,center,column);
+
         li{
             width: 100%;
             @include flex(space-between,center,row);
