@@ -27,9 +27,11 @@ const Navigation_items = ref(routes)
                     v-for="(item,index) in Navigation_items"
                     :key="index"
                 >
+                <a :href="item.route">
                     <span v-vue-aos="{animationClass:'fadeIn animated'}">
                         {{item.label}}
                     </span>
+                </a>
                 </li>
             </ul>
         </div>
@@ -44,6 +46,7 @@ const Navigation_items = ref(routes)
         position: sticky;
         top: 0;
         transition: $transition;
+        
 
         .left_side{
             @include flex(flex-start,center,row);

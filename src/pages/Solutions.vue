@@ -59,12 +59,10 @@ const data = ref(
         border-top: 0.1875rem solid transparent;
         transition: $transition;
         border-radius: 0.3125rem;
-
+        border-bottom: 0.1875rem solid rgba(#fff,.5);
+        border-top: 0.1875rem solid rgba(#fff,.5);
+        
         &:hover{
-            border-bottom: 0.1875rem solid rgba(#fff,.5);
-            border-top: 0.1875rem solid rgba(#fff,.5);
-
-
             li{
                 transform: scale(1.1);
                 opacity: .4;

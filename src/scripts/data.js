@@ -1,23 +1,23 @@
 const routes = [
     {
         label: 'Home',
-        route: '#home',
+        route: '#home_section',
     },
     {
         label: 'About Us',
-        route: '#aboutUs',
-    },
-    {
-        label: 'Features',
-        route: '#features',
+        route: '#about_section',
     },
     {
         label: 'Solutions',
-        route: '#solutions',
+        route: '#solutions_section',
     },
     {
-        label: 'Contact',
-        route: '#contact',
+        label: 'Partners',
+        route: '#parthners_section',
+    },
+    {
+        label: 'Join',
+        route: '#banner_section',
     },
 ]
 

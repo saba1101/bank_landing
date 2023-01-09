@@ -220,17 +220,17 @@ const transactions = ref([
             }
 
             &.col_4{
-                min-height: 300px;
+                min-height: 18.75rem;
 
                 h1{
-                    font-size: 48px;
+                    font-size: 3rem;
                     color: #fff !important;
                 }
                 p{
-                    max-width: 450px;
-                    font-size: 16px;
+                    max-width: 28.125rem;
+                    font-size: 1rem;
                     color: rgba(#fff,.6);
-                    line-height: 25px;
+                    line-height: 1.5625rem;
                     font-style: italic;
 
                     &::before,&::after{
